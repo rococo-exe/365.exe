@@ -1,0 +1,213 @@
+/* Restablecemos márgenes para evitar bordes blancos indeseados */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #ffffff; /* Fondo negro para resaltar el pixel art */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Centra el contenido en toda la pantalla */
+}
+
+/* Contenedor principal relativo */
+.contenedor-deidad {
+    position: relative; 
+    width: 90%; /* Esto hará que ocupe casi todo el ancho disponible */
+    max-width: 1400px; /* Aumentamos el tope máximo */
+    margin: 0 auto; 
+}
+
+/* La imagen de la deidad se adapta al 100% de su contenedor */
+.imagen-fondo {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Estilo general para los botones de las carpetas */
+.carpeta-icono {
+    position: absolute; 
+    text-align: center;
+    transform: translate(-50%, -50%); 
+    cursor: pointer;
+    width: 6%; /* Puedes agrandar un pelín la carpeta entera si hace falta */
+    min-width: 60px;
+}
+
+/* Tipografía de sistema operativo retro */
+.carpeta-icono p {
+    font-family: 'Courier New', Courier, monospace; 
+    font-size: 15px; /* Achicar un poquito la letra puede ayudar */
+    background-color: #000;
+    color: #fff;
+    padding: 3px;
+    margin-top: 5px;
+    font-weight: bold;
+    border: 1px solid #fff; /* Pequeño borde para darle onda retro */
+    white-space: nowrap; /* Esto obliga al texto a quedarse en una sola línea */
+    width: max-content;
+    margin: 5px auto 0 auto;
+
+}
+
+/* MAGIA DEL COLOR: Escala de grises por defecto */
+.carpeta-icono img {
+    filter: grayscale(100%);
+    transition: filter 0.4s ease, transform 0.2s ease;
+    width: 100%;
+}
+
+/* Pequeño salto al pasar el mouse por encima (hover) */
+.carpeta-icono:hover img {
+    transform: scale(1.1);
+}
+
+/* Cuando recibe el clic, recupera todo su color */
+.carpeta-icono.coloreado img {
+    filter: grayscale(0%);
+}
+
+/* --- COORDENADAS DE LOS BRAZOS --- */
+/* Tendrás que ajustar estos % ligeramente según el recorte exacto de tu imagen .png */
+/* LADO IZQUIERDO */
+.pos-1 { top: 40%; left: 16%; } /* Brazo superior izquierdo */
+.pos-2 { top: 56%; left: 10%; } /* Brazo medio izquierdo */
+.pos-3 { top: 85%; left: 8%; } /* Aumentamos el top para bajarla a la última mano */ /* Brazo inferior izquierdo */
+
+/* LADO DERECHO */
+.pos-4 { top: 40%; left: 84%; } /* Brazo superior derecho */
+.pos-5 { top: 56%; left: 90%; } /* Brazo medio derecho */
+.pos-6 { top: 85%; left: 94%; }/* Brazo inferior derecho */
+
+/* --- EL LOGO CENTRAL --- */
+.logo-central {
+    position: absolute;
+    top: 55%; /* Lo bajamos un poquito más del 50% para que quede en el pecho y no en la cara */
+    left: 50%;
+    transform: translate(-50%, -50%); /* Esto es magia: centra el objeto sobre su propio eje */
+    width: 25%; /* Qué tan grande quieres el logo. Sube o baja este % */
+    z-index: 10; /* Esto asegura que el logo quede por encima del fondo */
+    cursor: pointer;
+}
+
+/* Regla de oro: blanco y negro por defecto */
+.logo-central img {
+    width: 100%;
+    filter: grayscale(100%);
+    transition: filter 0.4s ease, transform 0.2s ease;
+}
+
+/* Efecto de saltito al pasar el mouse */
+.logo-central:hover img {
+    transform: scale(1.05);
+}
+
+/* A todo color cuando hace clic */
+.logo-central.coloreado img {
+    filter: grayscale(0%);
+}
+
+/* --- POP-UP MODAL --- */
+/* El fondo oscuro que tapa la deidad al hacer clic */
+.modal-oculto {
+    display: none; /* Oculto hasta que JavaScript diga lo contrario */
+    position: fixed; /* Se queda fijo en la pantalla */
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75); /* Negro con 75% de transparencia */
+    z-index: 100; /* Asegura que esté por encima de todo */
+    justify-content: center;
+    align-items: center;
+}
+
+/* La cajita que usa tu imagen pad.png */
+.ventana-retro {
+    position: relative;
+    width: 600px; /* Ajusta esto según el tamaño ideal para leer */
+    height: 450px; /* Ajusta esto para mantener la proporción de tu imagen */
+    background-image: url('../img/pad.png'); /* Carga tu diseño */
+    background-size: 100% 100%; /* Estira la imagen para cubrir el div */
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* El área interior donde irá el texto/fotos (esquivando los menús de arriba) */
+.contenido-ventana {
+    width: 90%;
+    height: 75%;
+    margin-top: 30px; /* Empuja el contenido hacia abajo para no pisar el título "Mini vRochi" */
+    overflow-y: auto; /* Si hay mucho texto, agrega una barra de scroll */
+    padding: 10px;
+    font-family: 'Courier New', Courier, monospace; /* Mantiene la estética retro */
+}
+
+/* El botón invisible que va justo sobre la X de tu imagen */
+
+.boton-cerrar {
+    position: absolute;
+    top: 40px;   /* Ajustá este valor si querés que suba o baje */
+    right: 50px; /* Ajustá este valor si querés que vaya más a izq o der */
+    width: 25px; 
+    height: 25px;
+    background: transparent; /* Totalmente invisible */
+    border: none;
+    cursor: pointer; 
+    z-index: 999; 
+}
+
+/* Estilos para el escritorio interno de la Carpeta 2 */
+.escritorio-carpeta2 {
+    padding: 15px;
+    display: flex;
+    gap: 25px;
+    align-items: flex-start;
+}
+
+.icono-escritorio {
+    cursor: pointer;
+    padding: 8px;
+    border: 1px dotted transparent;
+    text-align: center;
+    width: 85px;
+}
+
+.icono-escritorio:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+    border: 1px dotted #000;
+}
+
+.icono-escritorio img {
+    width: 48px;
+    height: 48px;
+    display: block;
+    margin: 0 auto;
+    object-fit: contain;
+}
+
+.icono-escritorio p {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 11px;
+    margin-top: 6px;
+    background: transparent !important;
+    border: none !important;
+    color: #000 !important;
+    font-weight: normal !important;
+}
+
+/* Visor donde se despliega la nota o imagen elegida */
+.visor-archivos-interno {
+    margin: 0 15px 15px 15px;
+    border-top: 1px dashed #666;
+    padding-top: 10px;
+    max-height: 190px;
+    overflow-y: auto;
+    font-family: 'Courier New', Courier, monospace;
+}
