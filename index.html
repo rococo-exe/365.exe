@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>365.exe</title>
+    <!-- Aquí conectamos tu hoja de estilos -->
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+    <div class="contenedor-deidad">
+        <!-- Imagen principal apuntando a la carpeta img -->
+        <img src="img/deidad-fondo.png" class="imagen-fondo" alt="365 días">
+
+        <!-- EL LOGO CENTRAL -->
+    <div class="logo-central" id="logo-365">
+        <img src="img/logo.gif" alt="365 Días" style="cursor: pointer;" onclick="abrirMensajeAniversario()">
+    </div>
+
+        <!-- Las 6 carpetas en ruso -->
+        <div class="carpeta-icono pos-1" id="carpeta-01" onclick="darColor('carpeta-01')">
+            <img src="img/carpeta.png" alt="Carpeta">
+            <p>01_Удаленный_доступ.exe</p>
+        </div>
+
+        <div class="carpeta-icono pos-2" id="carpeta-02" onclick="darColor('carpeta-02')">
+            <img src="img/carpeta.png" alt="Carpeta">
+            <p>02_Перезагрузка_системы.exe</p>
+        </div>
+
+        <div class="carpeta-icono pos-3" id="carpeta-03" onclick="darColor('carpeta-03')">
+            <img src="img/carpeta.png" alt="Carpeta">
+            <p>03_Словарь_и_рецепты.exe</p>
+        </div>
+
+        <div class="carpeta-icono pos-4" id="carpeta-04" onclick="darColor('carpeta-04')">
+            <img src="img/carpeta.png" alt="Carpeta">
+            <p>04_Медиафайлы.exe</p>
+        </div>
+
+        <div class="carpeta-icono pos-5" id="carpeta-05" onclick="darColor('carpeta-05')">
+            <img src="img/carpeta.png" alt="Carpeta">
+            <p>05_Диспетчер_кризисов.exe</p>
+        </div>
+
+        <div class="carpeta-icono pos-6" id="carpeta-06" onclick="darColor('carpeta-06')">
+            <img src="img/carpeta.png" alt="Carpeta">
+            <p>06_Миграционный_контроль.exe</p>
+        </div>
+    </div>
+
+
+        <!-- EL POP-UP (MODAL) OCULTO -->
+    <div id="modal-recuerdo" class="modal-oculto">
+    <div class="ventana-retro">
+        <!-- Botón invisible que se superpone a la X de tu dibujo -->
+        <button class="boton-cerrar" onclick="cerrarModal()"></button>
+        
+        <!-- Aquí adentro cargaremos el contenido (fotos, textos, el DNI, etc.) -->
+        <div class="contenido-ventana" id="contenido-dinamico">
+
+        </div>
+    </div>
+    </div>
+
+    
+
+    <!-- Aquí conectamos la lógica de JavaScript -->
+    <script src="js/script.js"></script>
+
+</body>
+</html>
